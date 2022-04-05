@@ -7,6 +7,8 @@
  * @property {boolean}  meldungenAusgeben    - steuert, ob eine Meldung ausgegeben werden soll oder nicht
  * @property {boolean}  einkaufenAufgeklappt - merkt sich, ob die "Einkaufen"-Liste aufgeklappt ist
  * @property {boolean}  erledigtAufgeklappt  - merkt sich, ob die "Erledigt"-Liste aufgeklappt ist
+ * @property {object}   SORTIERUNGEN         - Map zum Verwalten der Sortierungen
+ * @property {string}   sortierung           - aktuell gewählte Sortierung
  */
 class App {
   static STORAGE_KEY = "einkaufslisteDaten"
@@ -15,11 +17,17 @@ class App {
   static meldungenAusgeben = true
   static einkaufenAufgeklappt = true
   static erledigtAufgeklappt = false
+  static SORTIERUNGEN = {
+    "Eigene": this.sortiereIndex,
+    "Aufsteigend": this.sortiereAufsteigend,
+    "Absteigend": this.sortiereAbsteigend
+  }
+  static sortierung = Object.keys(this.SORTIERUNGEN)[0]
 
   /**
    * Sucht eine Gruppe nach ihrer ID und liefert sie als Objekt zurück
-   * @param gruppenId
-   * @returns {Gruppe}
+   * @param {number} gruppenId - ID der gesuchten Gruppe
+   * @returns {Gruppe|null} gefundeneGruppe - die gefundene Gruppe; `null`, wenn nichts gefunden wurde
    */
   static gruppeFinden(gruppenId) {
     const gefundeneGruppen = this.gruppenListe.filter((gruppe) => gruppe.id == gruppenId)
@@ -33,10 +41,11 @@ class App {
 
   /**
    * Fügt eine Gruppe in der Gruppenliste hinzu
-   * @param name
-   * @returns {Gruppe}
+   * @param {string} name - Name der neuen Gruppe
+   * @returns {Gruppe} neueGruppe - die neu hinzugefügte Gruppe
    */
   static gruppeHinzufuegen(name) {
+    this.gruppeFinden(3)
     const gleicheGruppen = this.gruppenListe.filter(gruppe => gruppe.name == name)
     // keine Gruppe mit diesem Namen vorhanden
     if (gleicheGruppen.length == 0) {
@@ -51,9 +60,9 @@ class App {
   }
 
   /**
-   * Benennt die Gruppe mit der ID <gruppenID> um
-   * @param gruppenId
-   * @param neuerName
+   * Benennt die Gruppe mit der ID `gruppenId` um
+   * @param {number} gruppenId - ID der umzubenennenden Gruppe
+   * @param {string} neuerName - der neue Name der Gruppe
    */
   static gruppeUmbenennen(gruppenId, neuerName) {
     let gruppe = this.gruppeFinden(gruppenId)
@@ -65,8 +74,8 @@ class App {
   }
 
   /**
-   * Entfernt die Gruppe mit der <gruppenId>
-   * @param gruppenId
+   * Entfernt die Gruppe mit der `gruppenId`
+   * @param {number} gruppenId - ID der zu löschenden Gruppe
    */
   static gruppeEntfernen(gruppenId) {
     let gruppe = this.gruppeFinden(gruppenId)
@@ -169,31 +178,26 @@ class App {
   }
 
   /**
-   * Sortiert Gruppen und Artikel nach der übergebenen <reihenfolge>
-   * @param reihenfolge
+   * Sortiert Gruppen und Artikel nach der übergebenen `reihenfolge`
+   * @param {string} reihenfolge - entspricht einem der Keys aus {@link SORTIERUNGEN}
    */
   static sortieren(reihenfolge) {
-    // anstelle von eines switch-Befehls
-    const sortiereNach = {
-      "Aufsteigend": this.sortiereAufsteigend,
-      "Absteigend": this.sortiereAbsteigend,
-      "Eigene": this.sortiereIndex
-    }
-    const sortierFunktion = sortiereNach[reihenfolge]
+    this.sortierung = reihenfolge
+    const sortierFunktion = this.SORTIERUNGEN[reihenfolge]
     // sortiere zuerst die Gruppen
     this.gruppenListe.sort(sortierFunktion)
     // sortiere danach die Artikel jeder Gruppe
     this.gruppenListe.map((gruppe) => {
-      gruppe.artikelListe.sort(sortiereNach[reihenfolge])
+      gruppe.artikelListe.sort(sortierFunktion)
     })
     this.informieren(`[App] nach "${reihenfolge}" sortiert`)
   }
 
   /**
    * Sortiert Elemente alphabetisch aufsteigend nach dem Namen
-   * @param a - erstes Element
-   * @param b - zweites Element
-   * @returns {number} - wenn kleiner:-1, wenn gleich:0, wenn größer:+1
+   * @param {Gruppe|Artikel} a - erstes Element
+   * @param {Gruppe|Artikel} b - zweites Element
+   * @returns {number} - wenn kleiner: -1, wenn gleich: 0, wenn größer: +1
    */
   static sortiereAufsteigend(a, b) {
     const nameA = a.name.toLowerCase()
@@ -203,9 +207,9 @@ class App {
 
   /**
    * Sortiert Elemente alphabetisch absteigend nach dem Namen
-   * @param a - erstes Element
-   * @param b - zweites Element
-   * @returns {number} - wenn kleiner:-1, wenn gleich:0, wenn größer:+1
+   * @param {Gruppe|Artikel} a - erstes Element
+   * @param {Gruppe|Artikel} b - zweites Element
+   * @returns {number} - wenn kleiner: -1, wenn gleich: 0, wenn größer: +1
    */
   static sortiereAbsteigend(a, b) {
     const nameA = a.name.toLowerCase()
@@ -215,9 +219,9 @@ class App {
 
   /**
    * Sortiert Elemente aufsteigend nach dem ursprünglichen Index
-   * @param a - erstes Element
-   * @param b - zweites Element
-   * @returns {number} - wenn kleiner:-1, wenn gleich:0, wenn größer:+1
+   * @param {Gruppe|Artikel} a - erstes Element
+   * @param {Gruppe|Artikel} b - zweites Element
+   * @returns {number} - wenn kleiner: -1, wenn gleich: 0, wenn größer: +1
    */
   sortiereIndex(a, b) {
     return a.index < b.index ? -1 : (a.index > b.index ? 1 : 0)

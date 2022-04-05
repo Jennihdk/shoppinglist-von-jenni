@@ -24,7 +24,7 @@ class GruppenDialog extends React.Component {
 
   render() {
     return (
-      <div className={'mdc-dialog ' + (this.props.visible ? 'mdc-dialog--open' : '')}>
+      <div className="mdc-dialog mdc-dialog--open">
         <div className="mdc-dialog__container">
           <div className="mdc-dialog__surface">
             <h2 className="mdc-dialog__title">Gruppen bearbeiten</h2>

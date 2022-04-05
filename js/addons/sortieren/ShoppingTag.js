@@ -4,7 +4,6 @@ class ShoppingTag extends React.Component {
     this.state = {
       aktiveGruppe: null,
       showGruppenDialog: false,
-      sortierung: "Eigene",
       showSortierDialog: false,
       einkaufenAufgeklappt: true,
       erledigtAufgeklappt: false
@@ -71,7 +70,7 @@ class ShoppingTag extends React.Component {
             <input type="search" id="artikelEingabe" placeholder="Artikel hinzufügen"
                    onKeyPress={e => (e.key == 'Enter') ? this.artikelHinzufuegen() : ''}/>
             <i onClick={() => this.artikelHinzufuegen()}
-                    className="material-icons mdc-button">add_circle
+               className="material-icons mdc-button">add_circle
             </i>
           </nav>
         </header>
@@ -114,26 +113,31 @@ class ShoppingTag extends React.Component {
         <hr/>
 
         <footer>
-            <button className="mdc-button mdc-button--raised"
-                    onClick={() => this.setState({showGruppenDialog: true})}>
-              <span className="mdc-button__ripple"></span>
-              Gruppen
-            </button>
-            <button className="mdc-button mdc-button--raised"
-                    onClick={() => this.setState({showSortierDialog: true})}>
-              <span className="mdc-button__ripple"></span>
-              <span className="material-icons">sort</span> Sort
-            </button>
-            <button className="mdc-button mdc-button--raised">
-              <span className="material-icons">settings</span> Setup
-            </button>
+          <button className="mdc-button mdc-button--raised"
+                  onClick={() => this.setState({showGruppenDialog: true})}>
+            <span className="mdc-button__ripple"></span>
+            Gruppen
+          </button>
+          <button className="mdc-button mdc-button--raised"
+                  onClick={() => this.setState({showSortierDialog: true})}>
+            <span className="mdc-button__ripple"></span>
+            <span className="material-icons">sort</span> Sort
+          </button>
+          <button className="mdc-button mdc-button--raised">
+            <span className="material-icons">settings</span> Setup
+          </button>
         </footer>
 
-        <GruppenDialog visible={this.state.showGruppenDialog} gruppenListe={App.gruppenListe}
-                       onDialogClose={() => this.setState({showGruppenDialog: false})}/>
+        {this.state.showGruppenDialog
+          ? <GruppenDialog gruppenListe={App.gruppenListe}
+                           onDialogClose={() => this.setState({showGruppenDialog: false})}/>
+          : ''}
 
-        <SortierDialog visible={this.state.showSortierDialog} sortierung={this.state.sortierung}
-                       onDialogClose={this.closeSortierDialog}/>
+
+        {this.state.showSortierDialog
+          ? <SortierDialog onDialogClose={this.closeSortierDialog}/>
+          : ''
+        }
 
       </div>
     )

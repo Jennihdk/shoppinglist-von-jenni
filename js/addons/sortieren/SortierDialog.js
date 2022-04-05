@@ -2,45 +2,42 @@ class SortierDialog extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showDialog: this.props.visible,
-      sortierung: this.props.sortierung
+      sortierung: App.sortierung
     }
   }
 
-  handleChange = (e) => {
-    this.setState({sortierung: e.target.value})
+  handleChange(event) {
+    this.setState({sortierung: event.target.value})
   }
 
-  dialogHandler = (sortieren) => {
+  dialogHandler(sortieren) {
     this.props.onDialogClose(this.state.sortierung, sortieren)
   }
 
   render() {
-    const style = {
-      display: 'flex'
-    }
+    const sortKeys = Object.keys(App.SORTIERUNGEN)
     return (
-      <div className={'mdc-dialog ' + (this.props.visible ? 'mdc-dialog--open' : '')}>
+      <div className="mdc-dialog mdc-dialog--open">
         <div className="mdc-dialog__container">
           <div className="mdc-dialog__surface">
             <h2 className="mdc-dialog__title">Wähle die Sortierung:</h2>
 
             <div className="mdc-dialog__content">
-              <ul className="mdc-deprecated-list" onChange={this.handleChange}>
-                <li><label htmlFor="auf">
-                  <input type="radio" id="auf" name="Sortierung" value="Aufsteigend"
-                    defaultChecked={this.state.sortierung=="Aufsteigend"}/> Aufsteigend
-                </label>
-                </li>
-                <li><label htmlFor="ab">
-                  <input type="radio" id="ab" name="Sortierung" value="Absteigend"
-                    defaultChecked={this.state.sortierung=="Absteigend"}/> Absteigend
+              <ul className="mdc-deprecated-list" onChange={e => this.handleChange(e)}>
+                <li><label htmlFor="eigene">
+                  <input type="radio" id="eigene" name="Sortierung" value={sortKeys[0]}
+                         defaultChecked={this.state.sortierung==sortKeys[0]}/> eigene Reihenfolge
                 </label>
                 </li>
                 <hr/>
-                <li><label htmlFor="alp">
-                  <input type="radio" id="alp" name="Sortierung" value="Eigene"
-                    defaultChecked={this.state.sortierung=="Eigene"}/> eigene Reihenfolge
+                <li><label htmlFor="auf">
+                  <input type="radio" id="auf" name="Sortierung" value={sortKeys[1]}
+                    defaultChecked={this.state.sortierung==sortKeys[1]}/> Aufsteigend
+                </label>
+                </li>
+                <li><label htmlFor="ab">
+                  <input type="radio" id="ab" name="Sortierung" value={sortKeys[2]}
+                    defaultChecked={this.state.sortierung==sortKeys[2]}/> Absteigend
                 </label>
                 </li>
               </ul>
