@@ -16,6 +16,10 @@ class GruppenTag extends React.Component {
     this.props.aktiveGruppeHandler(this.props.gruppe.id)
   }
 
+  /**
+   * entfernt eine Artikel aus der Gruppe und schiebt den Artikel in erledigt unter die gleiche gruppe
+   */
+
   render = () => {
     const erledigt = this.props.erledigt
     let itemsRelevant = this.props.gruppe.artikelListe.filter(item => item.gekauft == this.props.erledigt)

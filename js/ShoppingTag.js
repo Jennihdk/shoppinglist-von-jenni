@@ -5,7 +5,6 @@
 class ShoppingTag extends React.Component {
 
   /**
-   *
    * @param props
    */
   constructor(props) {
@@ -110,15 +109,19 @@ class ShoppingTag extends React.Component {
         <hr/>
         <footer>
           <nav>
+
             <button onClick={() => this.setState({showGruppenDialog: true})}>
               <span className="material-icons">bookmark_add</span>
             </button>
+
             <button onClick={() => this.setState({showSortierDialog: true})}>
               <span className="material-icons">sort</span>
             </button>
+
             <button>
               <span className="material-icons">settings</span>
             </button>
+
           </nav>
         </footer>
 
@@ -127,7 +130,6 @@ class ShoppingTag extends React.Component {
 
         <SortierDialog visible={this.state.showSortierDialog} sortierung={this.state.sortierung}
                        onDialogClose={this.closeSortierDialog}/>
-
 
       </div>
     )

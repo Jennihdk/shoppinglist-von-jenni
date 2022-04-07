@@ -1,7 +1,7 @@
 /**
  * Diese Komponente zeigt einen Artikel in einer Gruppe (Zeile 18)
  * den man abhaken kann, damit der Artikel zu Erledigt verschoben wird (Zeile 17)
- * oder der Artikel kann gelÃķscht werden (Button in Zeile 19)
+ * oder der Artikel kann gelöscht werden (Button in Zeile 19)
  */
 
 class ArtikelTag extends React.Component {
