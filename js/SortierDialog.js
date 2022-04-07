@@ -1,3 +1,7 @@
+/**
+ * Diese Kompontente rendert den SortierDialog
+ */
+
 class SortierDialog extends React.Component {
 
   constructor(props) {
