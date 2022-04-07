@@ -1,15 +1,14 @@
 /**
- * Diese Komponente fügt Artikel zur Einkaufsliste hinzu
+ * Diese Komponente ist zuständig für die komplette Appseite
  */
 
 class ShoppingTag extends React.Component {
-
-  /**
-   * @param props
-   */
   constructor(props) {
     super(props);
 
+    /**
+     * @type {{sortierung: string, showGruppenDialog: boolean, showSortierDialog: boolean, aktiveGruppe: number}}
+     */
     this.state = {
       aktiveGruppe: 0,
       showGruppenDialog: false,
@@ -34,10 +33,9 @@ class ShoppingTag extends React.Component {
   }
 
   /**
-   *
-   * @param gruppenId {@link }
+   * Zeigt die aktive Gruppe und speichert sie
+   * @param gruppenId - Gruppe {@link gruppeFinden}
    */
-
   setAktiveGruppe = (gruppenId) => {
     App.aktiveGruppe = gruppenId
     const gruppe = App.gruppeFinden(gruppenId)
@@ -45,13 +43,20 @@ class ShoppingTag extends React.Component {
     this.setState({aktiveGruppe: App.aktiveGruppe})
   }
 
+  /**
+   * Diese Methode checkt, ob der Artikel gekauft wurde
+   * und speichert den Zustand
+   */
   artikelChecken = (artikel) => {
     artikel.gekauft = !artikel.gekauft
-    const aktion= artikel.gekauft ? "erledigt" : "reaktiviert"
+    const aktion = artikel.gekauft ? "erledigt" : "reaktiviert"
     App.informieren(`[App] Artikel "${artikel.name}" ${aktion}`)
     this.setState(this.state)
   }
 
+  /**
+   * Diese Methode fügt einen Artikel zur aktiven Gruppe hinzu
+   */
   artikelHinzufuegen = () => {
     let eingabe = document.getElementById("eingabe")
     if (eingabe.value.trim().length > 0) {
@@ -63,6 +68,11 @@ class ShoppingTag extends React.Component {
     eingabe.focus()
   }
 
+  /**
+   * Diese Methode sortiert die Gruppen und deren Artikel alphabetisch
+   * @param reihenfolge - {@link sortieren}
+   * @param sortieren - {@link sortieren}
+   */
   closeSortierDialog = (reihenfolge, sortieren) => {
     if (sortieren) {
       App.sortieren(reihenfolge)
@@ -79,7 +89,8 @@ class ShoppingTag extends React.Component {
           <nav>
             <input type="text" placeholder="Artikel hinzügen" id="eingabe"/>
             <button onClick={() => this.artikelHinzufuegen()} id="hinzufügen"
-                    className="material-icons">add_circle</button>
+                    className="material-icons">add_circle
+            </button>
           </nav>
         </header>
         <hr/>

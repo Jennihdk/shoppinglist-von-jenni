@@ -1,6 +1,5 @@
 /**
- * Diese Komponente
- *
+ * Diese Komponente ist zuständig für die Auflistung der Gruppen
  */
 
 class GruppenTag extends React.Component {
@@ -8,7 +7,7 @@ class GruppenTag extends React.Component {
   /**
    * Diese Methode entfernt einen Artikel aus einer Gruppe
    * mit dem Button {@link ArtikelTag}
-   * @param artikelName
+   * @param artikelName - Artikel
    */
 
   artikelEntfernen = (artikelName) => {
@@ -16,9 +15,6 @@ class GruppenTag extends React.Component {
     this.props.aktiveGruppeHandler(this.props.gruppe.id)
   }
 
-  /**
-   * entfernt eine Artikel aus der Gruppe und schiebt den Artikel in erledigt unter die gleiche gruppe
-   */
 
   render = () => {
     const erledigt = this.props.erledigt
@@ -31,7 +27,8 @@ class GruppenTag extends React.Component {
           <span>{this.props.gruppe.name}</span>
         </dt>
         {itemsRelevant.map(artikel => (
-          <ArtikelTag key={artikel.id} artikel={artikel} checkHandler={this.props.checkHandler} deleteHandler={this.artikelEntfernen}/>
+          <ArtikelTag key={artikel.id} artikel={artikel} checkHandler={this.props.checkHandler}
+                      deleteHandler={this.artikelEntfernen}/>
         ))}
       </div>
     )

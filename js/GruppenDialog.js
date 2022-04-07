@@ -1,6 +1,6 @@
 /**
- *  showDialog zeigt das Fenster Gruppe bearbeiten
- *  gruppenListe zeigt die Gruppenliste an, die bearbeitet wird und wurde
+ *  Diese Komponente ist zuständig für das Gruppe bearbeiten
+ *  und zeigt die Gruppenliste an, die bearbeitet wird und wurde
  */
 
 class GruppenDialog extends React.Component {
@@ -15,7 +15,6 @@ class GruppenDialog extends React.Component {
 
   /**
    * Diese Methode fügt eine neue Gruppe hinzu
-   * und wird mit dem Button in Zeile 67 ausgeführt
    */
   gruppeHinzufuegen = () => {
     let gruppenEingabe = document.getElementById("gruppeneingabe")
@@ -29,8 +28,7 @@ class GruppenDialog extends React.Component {
 
   /**
    * Diese Methode entfernt eine Gruppe mit ihren Artikeln
-   * und wird mit dem Button in Zeile 77 entfernt
-   * @param gruppenId aus App.js gruppe.id = gruppenId {@link gruppeFinden}
+   * @param gruppenId - {@link gruppeFinden}
    */
 
   gruppeEntfernen = (gruppenId) => {
@@ -40,18 +38,11 @@ class GruppenDialog extends React.Component {
 
   /**
    * schließt das Fenster Gruppe bearbeiten
-   * mit dem Button aus
    */
 
   onDialogClose = () => {
     this.setState({showGruppenDialog: false})
   }
-
-  /**
-   *
-   * @returns {JSX.Element} "Gruppe bearbeiten" Fenster
-   * mit einem Textfeld, Hinzufügenbutton und Schließen Button
-   */
 
   render() {
     return (
@@ -64,7 +55,9 @@ class GruppenDialog extends React.Component {
             <div className="mdc-dialog__content">
               <nav>
                 <input type="text" id="gruppeneingabe" placeholder="Gruppe hinzufügen"/>
-                <button className="material-icons" id="gruppehinzufügen" onClick={() => this.gruppeHinzufuegen()}>add_circle_outline</button>
+                <button className="material-icons" id="gruppehinzufügen"
+                        onClick={() => this.gruppeHinzufuegen()}>add_circle_outline
+                </button>
               </nav>
             </div>
             <hr/>
