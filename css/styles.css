@@ -6,8 +6,8 @@
     opacity: 85%;
 }
 :root {
-    --mdc-theme-primary: #33691E;
-    --mdc-theme-secondary: #827717;
+    --mdc-theme-primary: #745466;
+    --mdc-theme-secondary: #F2EEF4;
 }
 h2, dd {
     color: black;
@@ -157,7 +157,7 @@ dl dt {
 }
 
 i[id="artikellöschen"] {
-    margin-right: 7px;
+    margin-right: 0.45rem;
 }
 
 span[id="gruppenName"] {
@@ -165,5 +165,7 @@ span[id="gruppenName"] {
 }
 
 i[id="gruppeentfernen"] {
-    margin-right: 7px;
+    margin-right: 0.45rem;
+    margin-top: 0.45rem;
+    margin-bottom: 0.45rem;
 }

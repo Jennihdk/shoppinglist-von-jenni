@@ -1,5 +1,5 @@
 /**
- * Diese Kompinente fÃžgt Artikel zur Einkaufsliste hinzu
+ * Diese Kompinente fügt Artikel zur Einkaufsliste hinzu
  */
 
 class ShoppingTag extends React.Component {
@@ -74,8 +74,8 @@ class ShoppingTag extends React.Component {
         <header>
           <h1>Einkaufsliste</h1>
           <nav>
-            <input type="text" placeholder="Artikel hinzufÃžgen" id="eingabe"/>
-            <button onClick={() => this.artikelHinzufuegen()} id="hinzufÃžgen"
+            <input type="text" placeholder="Artikel hinzügen" id="eingabe"/>
+            <button onClick={() => this.artikelHinzufuegen()} id="hinzufügen"
                     className="material-icons">add_circle</button>
           </nav>
         </header>

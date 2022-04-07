@@ -64,8 +64,8 @@ class GruppenDialog extends React.Component {
 
             <div className="mdc-dialog__content">
               <nav>
-                <input type="text" id="gruppeneingabe" placeholder="Gruppe hinzufĆ¼gen"/>
-                <button className="material-icons" id="gruppehinzufĆ¼gen" onClick={() => this.gruppeHinzufuegen()}>add_circle_outline</button>
+                <input type="text" id="gruppeneingabe" placeholder="Gruppe hinzufügen"/>
+                <button className="material-icons" id="gruppehinzufügen" onClick={() => this.gruppeHinzufuegen()}>add_circle_outline</button>
               </nav>
             </div>
             <hr/>
