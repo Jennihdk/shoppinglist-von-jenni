@@ -15,8 +15,6 @@ class App {
   static gruppenListe = []
   static aktiveGruppe = null
   static meldungenAusgeben = true
-  static einkaufenAufgeklappt = true
-  static erledigtAufgeklappt = false
   static SORTIERUNGEN = {
     "Eigene": this.sortiereIndex,
     "Aufsteigend": this.sortiereAufsteigend,

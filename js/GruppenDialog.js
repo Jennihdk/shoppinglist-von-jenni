@@ -1,7 +1,6 @@
 /**
- * Diese Komponente
- * props: showDialog zeigt das Fenster Gruppe bearbeiten
- *        gruppenListe zeigt die Gruppenliste an, die bearbeitet wird und wurde
+ *  showDialog zeigt das Fenster Gruppe bearbeiten
+ *  gruppenListe zeigt die Gruppenliste an, die bearbeitet wird und wurde
  */
 
 class GruppenDialog extends React.Component {
@@ -15,8 +14,8 @@ class GruppenDialog extends React.Component {
   }
 
   /**
-   * Diese Methode fĆ¼gt eine neue Gruppe hinzu
-   * und wird mit dem Button in Zeile 68 ausgefĆ¼hrt
+   * Diese Methode fügt eine neue Gruppe hinzu
+   * und wird mit dem Button in Zeile 67 ausgeführt
    */
   gruppeHinzufuegen = () => {
     let gruppenEingabe = document.getElementById("gruppeneingabe")
@@ -30,7 +29,7 @@ class GruppenDialog extends React.Component {
 
   /**
    * Diese Methode entfernt eine Gruppe mit ihren Artikeln
-   * und wird mit dem Button in Zeile 78 entfernt
+   * und wird mit dem Button in Zeile 77 entfernt
    * @param gruppenId aus App.js gruppe.id = gruppenId {@link gruppeFinden}
    */
 
@@ -40,7 +39,7 @@ class GruppenDialog extends React.Component {
   }
 
   /**
-   * schlieĆt das Fenster Gruppe bearbeiten
+   * schließt das Fenster Gruppe bearbeiten
    * mit dem Button aus
    */
 
@@ -51,7 +50,7 @@ class GruppenDialog extends React.Component {
   /**
    *
    * @returns {JSX.Element} "Gruppe bearbeiten" Fenster
-   * mit einem Textfeld, HinzufĆ¼genbutton und SchlieĆen Button
+   * mit einem Textfeld, Hinzufügenbutton und Schließen Button
    */
 
   render() {

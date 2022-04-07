@@ -1,9 +1,13 @@
 /**
- * Diese Kompinente fügt Artikel zur Einkaufsliste hinzu
+ * Diese Komponente fügt Artikel zur Einkaufsliste hinzu
  */
 
 class ShoppingTag extends React.Component {
 
+  /**
+   *
+   * @param props
+   */
   constructor(props) {
     super(props);
 
